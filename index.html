@@ -7,14 +7,23 @@
 <meta name="apple-mobile-web-app-title" content="Winery">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="theme-color" content="#1a0d10">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#FFFFFF" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#221B15" media="(prefers-color-scheme: dark)">
 <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="512x512" href="icon-512.png">
 <link rel="manifest" href="manifest.webmanifest">
 <style>
-  html, body { margin: 0; height: 100%; background: #1a0d10; overflow: hidden; }
-  iframe { position: fixed; inset: 0; width: 100%; height: 100%; border: 0; display: block; }
+  :root { --bg: #F7F3EC; }
+  @media (prefers-color-scheme: dark) { :root { --bg: #17120E; } }
+  html, body { margin: 0; height: 100%; background: var(--bg); overflow: hidden; }
+  /* the app runs down to the home bar; the strip under the bar matches the app */
+  iframe {
+    position: fixed; top: 0; left: 0; right: 0;
+    bottom: env(safe-area-inset-bottom, 0px);
+    width: 100%; height: calc(100% - env(safe-area-inset-bottom, 0px));
+    border: 0; display: block; background: var(--bg);
+  }
 </style>
 </head>
 <body>
